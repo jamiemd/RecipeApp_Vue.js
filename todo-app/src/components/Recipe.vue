@@ -1,18 +1,14 @@
-
 <template>
   <div class='ui centered card'>
     <div class="content" v-show="!isEditing">
       <div class='header'>
-          {{ todo.title }}
-      </div>
-      <div class='meta'>
-          {{ todo.project }}
+          {{ recipe.name }}
       </div>
       <div class='extra content'>
           <span class='right floated edit icon' v-on:click="showForm">
           <i class='edit icon'></i>
         </span>
-        <span class='right floated trash icon' v-on:click="deleteTodo(todo)">
+        <span class='right floated trash icon' v-on:click="deleteRecipe(recipe)">
           <i class='trash icon'></i>
         </span>
       </div>
@@ -20,12 +16,16 @@
     <div class="content" v-show="isEditing">
       <div class='ui form'>
         <div class='field'>
-          <label>Title</label>
-          <input type='text' v-model="todo.title" >
+          <label>Recipe Name</label>
+          <input type='text' v-model="recipe.name" >
         </div>
-        <div class='field'>
-          <label>Project</label>
-          <input type='text' v-model="todo.project" >
+         <div class='field'>
+          <label>Ingredients</label>
+            <textarea v-model="recipe.ingredients"></textarea>
+        </div>
+         <div class='field'>
+          <label>Instructions</label>
+            <textarea v-model="recipe.instructions"></textarea>
         </div>
         <div class='ui two button attached buttons'>
           <button class='ui basic blue button' v-on:click="hideForm">
@@ -34,29 +34,20 @@
         </div>
       </div>
     </div>
-    <div class='ui bottom attached green basic button' v-show="!isEditing &&todo.done" disabled>
-        Completed
-    </div>
-    <div class='ui bottom attached red basic button' v-on:click="completeTodo(todo)" v-show="!isEditing && !todo.done">
-        Pending
-    </div>
   </div>
 </template>
 
 <script type="text/javascript">
 export default {
-  props: ['todo'],
+  props: ['recipe'],
   data () {
     return {
       isEditing: false
     }
   },
   methods: {
-    completeTodo (todo) {
-      this.$emit('complete-todo', todo)
-    },
-    deleteTodo (todo) {
-      this.$emit('delete-todo', todo)
+    deleteRecipe (recipe) {
+      this.$emit('delete-recipe', recipe)
     },
     showForm () {
       this.isEditing = true

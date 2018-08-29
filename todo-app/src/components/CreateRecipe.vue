@@ -1,19 +1,21 @@
 
 <template>
   <div class='ui basic content center aligned segment'>
-    <button class='ui basic button icon' v-on:click="openForm" v-show="!isCreating">
-      <i class='plus icon'></i>
-    </button>
+    <button class='ui button' v-on:click="openForm" v-show="!isCreating">Create New Recipe</button>
     <div class='ui centered card' v-show="isCreating">
       <div class='content'>
         <div class='ui form'>
           <div class='field'>
-            <label>Title</label>
-            <input v-model="titleText" type='text'>
+            <label>Recipe Name</label>
+            <input v-model="name" type='text'>
           </div>
           <div class='field'>
-            <label>Project</label>
-            <input v-model="projectText" type='text'>
+            <label>Ingredients</label>
+            <textarea v-model="ingredients"></textarea>
+          </div>
+           <div class='field'>
+            <label>Instructions</label>
+            <textarea v-model="instructions"></textarea>
           </div>
           <div class='ui two button attached buttons'>
             <button class='ui basic blue button' v-on:click="sendForm()">
@@ -33,8 +35,8 @@
 export default {
   data () {
     return {
-      titleText: '',
-      projectText: '',
+      name: '',
+      ingredients: '',
       isCreating: false
     }
   },
@@ -46,16 +48,19 @@ export default {
       this.isCreating = false
     },
     sendForm () {
-      if (this.titleText.length > 0 && this.projectText.length > 0) {
-        const title = this.titleText
-        const project = this.projectText
-        this.$emit('create-todo', {
-          title,
-          project,
+      if (this.name.length > 0 && this.ingredients.length > 0 && this.instructions.length > 0) {
+        const name = this.name
+        const ingredients = this.ingredients
+        const instructions = this.instructions
+        this.$emit('create-recipe', {
+          name,
+          ingredients,
+          instructions,
           done: false
         })
-        this.titleText = ''
-        this.projectText = ''
+        this.name = ''
+        this.ingredients = ''
+        this.instructions = ''
         this.isCreating = false
       }
     }

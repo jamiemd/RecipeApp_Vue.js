@@ -1,11 +1,11 @@
 
 <template>
   <div id="app">
-    <h1 class="ui dividing centered header">Vue.js Todo App</h1>
+    <h1 class="ui dividing centered header">RecipeApp</h1>
     <div class='ui three column centered grid'>
       <div class='column'>
-        <todo-list v-bind:todos="todos"></todo-list>
-        <create-todo v-on:create-todo="createTodo"></create-todo>
+        <create-recipe v-on:create-recipe="createRecipe"></create-recipe>
+        <recipe-list v-bind:recipes="recipes"></recipe-list>
       </div>
     </div>
   </div>
@@ -13,38 +13,26 @@
 
 <script>
 import sweetalert from 'sweetalert'
-import TodoList from './components/TodoList'
-import CreateTodo from './components/CreateTodo'
+import RecipeList from './components/RecipeList'
+import CreateRecipe from './components/CreateRecipe'
 export default {
   name: 'app',
   components: {
-    TodoList,
-    CreateTodo
+    RecipeList,
+    CreateRecipe
   },
   data () {
     return {
-      todos: [{
-        title: 'Todo A',
-        project: 'Project A',
-        done: false
-      }, {
-        title: 'Todo B',
-        project: 'Project B',
-        done: true
-      }, {
-        title: 'Todo C',
-        project: 'Project C',
-        done: false
-      }, {
-        title: 'Todo D',
-        project: 'Project D',
-        done: false
+      recipes: [{
+        name: 'Carbonara',
+        ingredients: 'cheese, bacon',
+        instructions: 'cook pasta'
       }]
     }
   },
   methods: {
-    createTodo (newTodo) {
-      this.todos.push(newTodo)
+    createRecipe (newRecipe) {
+      this.recipes.push(newRecipe)
       sweetalert('Success!', 'To-Do created!', 'success')
     }
   }
