@@ -2,11 +2,9 @@
 <template>
   <div id="app">
     <h1 class="ui dividing centered header">RecipeApp</h1>
-    <div class='ui three column centered grid'>
-      <div class='column'>
+    <div>
         <create-recipe v-on:create-recipe="createRecipe"></create-recipe>
-        <recipe-list v-bind:recipes="recipes"></recipe-list>
-      </div>
+        <recipe-list v-on:click="showRecipe" v-bind:recipes="recipes"></recipe-list>
     </div>
   </div>
 </template>
@@ -15,6 +13,7 @@
 import sweetalert from 'sweetalert'
 import RecipeList from './components/RecipeList'
 import CreateRecipe from './components/CreateRecipe'
+
 export default {
   name: 'app',
   components: {
@@ -34,6 +33,9 @@ export default {
     createRecipe (newRecipe) {
       this.recipes.push(newRecipe)
       sweetalert('Success!', 'To-Do created!', 'success')
+    },
+    showRecipe () {
+
     }
   }
 }

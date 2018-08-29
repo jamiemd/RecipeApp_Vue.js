@@ -1,4 +1,3 @@
-
 <template>
   <div class='ui basic content center aligned segment'>
     <button class='ui button' v-on:click="openForm" v-show="!isCreating">Create New Recipe</button>
@@ -32,6 +31,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data () {
     return {
@@ -62,6 +63,13 @@ export default {
         this.ingredients = ''
         this.instructions = ''
         this.isCreating = false
+        axios.post(`http://jsonplaceholder.typicode.com/posts`, {
+          body: this.postBody
+        })
+          .then(response => {})
+          .catch(e => {
+            console.log('e', e)
+          })
       }
     }
   }
