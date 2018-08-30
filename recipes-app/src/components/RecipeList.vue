@@ -1,15 +1,19 @@
 
 <template>
 
-<div class='ui two column centered grid'>
+<div class='ui three column centered grid'>
 
   <div class='two wide column'>
-    <recipe v-on:delete-recipe="deleteRecipe" v-on:show-form="showForm" v-bind:showForm="showForm" v-for="recipe in recipes" :key="recipe.id" :recipe.sync="recipe"></recipe>
+    <recipe v-on:delete-recipe="deleteRecipe" v-on:show-edit-form="showEditForm" v-bind:showEditForm="showEditForm" v-for="recipe in recipes" :key="recipe.id" :recipe.sync="recipe"></recipe>
   </div>
 
+  <div class="one wide column"/>
+
+  <div class='eight wide column' v-show="!isEditing">
+    </div>
+
   <div class='eight wide column' v-show="isEditing">
-    <div class='ui centered card'>
-      <div class="content">
+      <div class="ui segment">
         <div class='ui form'>
           <div class='field'>
             <label>Recipe Name</label>
@@ -24,11 +28,10 @@
               <textarea v-model="recipeInfo.instructions"></textarea>
           </div>
           <div class='ui two button attached buttons'>
-            <button class='ui basic blue button' v-on:click="hideForm">
+            <button class='ui basic blue button' v-on:click="hideEditForm">
               Close X
             </button>
           </div>
-        </div>
       </div>
     </div>
   </div>
@@ -56,10 +59,10 @@ export default {
       const recipeIndex = this.recipes.indexOf(recipe)
       this.recipes.splice(recipeIndex, 1)
     },
-    hideForm () {
+    hideEditForm () {
       this.isEditing = false
     },
-    showForm (recipe) {
+    showEditForm (recipe) {
       console.log('recipe', recipe)
       this.isEditing = true
       this.recipeInfo = recipe

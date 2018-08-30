@@ -1,6 +1,6 @@
 <template>
   <div class='ui basic content center aligned segment'>
-    <button class='ui button' v-on:click="openForm" v-show="!isCreating">Create New Recipe</button>
+    <button class='ui green button' v-on:click="showCreateForm" v-show="!isCreating">Create Recipe</button>
     <div class='ui centered card' v-show="isCreating">
       <div class='content'>
         <div class='ui form'>
@@ -17,10 +17,10 @@
             <textarea v-model="instructions"></textarea>
           </div>
           <div class='ui two button attached buttons'>
-            <button class='ui basic blue button' v-on:click="sendForm()">
+            <button class='ui basic blue button' v-on:click="sendCreateForm()">
               Create
             </button>
-            <button class='ui basic red button' v-on:click="closeForm">
+            <button class='ui basic red button' v-on:click="hideCreateForm">
               Cancel
             </button>
           </div>
@@ -43,13 +43,15 @@ export default {
     }
   },
   methods: {
-    openForm () {
+    showCreateForm () {
       this.isCreating = true
+      this.$emit('show-create-form')
     },
-    closeForm () {
+    hideCreateForm () {
       this.isCreating = false
+      this.$emit('hide-create-form')
     },
-    sendForm () {
+    sendCreateForm () {
       if (this.name.length > 0 && this.ingredients.length > 0 && this.instructions.length > 0) {
         const name = this.name
         const ingredients = this.ingredients

@@ -6,14 +6,8 @@
       <div class='header'>
           {{ recipe.name }}
       </div>
-      <div class='header'>
-          {{ recipe.ingredients }}
-      </div>
-      <div class='header'>
-          {{ recipe.instructions }}
-      </div>
       <div class='extra content'>
-          <span class='right floated edit icon' v-on:click="showForm(recipe)">
+          <span class='right floated edit icon' v-on:click="showEditForm(recipe)">
           <i class='edit icon'></i>
         </span>
         <span class='right floated trash icon' v-on:click="deleteRecipe(recipe)">
@@ -40,11 +34,8 @@ export default {
     deleteRecipe (recipe) {
       this.$emit('delete-recipe', recipe)
     },
-    showForm (recipe) {
-      this.$emit('show-form', recipe)
-    },
-    hideForm () {
-      this.isEditing = false
+    showEditForm (recipe) {
+      this.$emit('show-edit-form', recipe)
     },
     created () {
       this.loading = true

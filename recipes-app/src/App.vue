@@ -3,8 +3,8 @@
   <div id="app">
     <h1 class="ui dividing centered header">RecipeApp</h1>
     <div>
-        <create-recipe v-on:create-recipe="createRecipe"></create-recipe>
-        <recipe-list v-bind:recipes="recipes"></recipe-list>
+        <create-recipe v-on:create-recipe="createRecipe" v-on:show-create-form="showCreateForm" v-on:hide-create-form="hideCreateForm"></create-recipe>
+        <recipe-list v-bind:recipes="recipes"  v-show="!isCreating"></recipe-list>
     </div>
   </div>
 </template>
@@ -22,19 +22,11 @@ export default {
   },
   data () {
     return {
-      // recipes: [{
-      //   name: 'Carbonara',
-      //   ingredients: 'cheese, bacon',
-      //   instructions: 'cook pasta'
-      // },
-      // { name: 'Salad',
-      //   ingredients: 'veggies',
-      //   instructions: 'toss the veggies'}
-      // ]
-      recipes: []
+      recipes: [],
+      isCreating: false
     }
   },
-  mounted: () => {
+  mounted () {
     console.log('data mounted')
     axios.get('http://localhost:8000/api/recipes')
       .then((response) => {
@@ -48,6 +40,14 @@ export default {
       })
   },
   methods: {
+    showCreateForm () {
+      console.log('show form clicked')
+      this.isCreating = true
+    },
+    hideCreateForm () {
+      console.log('hide form clicked')
+      this.isCreating = false
+    },
     createRecipe (newRecipe) {
       this.recipes.push(newRecipe)
       console.log('newRecipe', newRecipe)
