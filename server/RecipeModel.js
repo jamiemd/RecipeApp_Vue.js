@@ -1,14 +1,12 @@
 const mongoose = require("mongoose");
 
-mongoose.Promise = global.Promise;
-mongoose.connect(
-  "mongodb://localhost/recipes",
-  { useNewUrlParser: true }
-);
-
 const RecipeSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
   ingredients: {
-    type: Array,
+    type: String,
     required: true
   },
   instructions: {

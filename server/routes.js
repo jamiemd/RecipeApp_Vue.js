@@ -6,7 +6,8 @@ const STATUS_OKAY = 200;
 const STATUS_NOT_FOUND = 404;
 
 module.exports = app => {
-  app.get("/api/recipe", (req, res) => {
+  app.get("/api/recipes", (req, res) => {
+    console.log("req.body in getrecipes", req.body);
     Recipe.find({})
       .then(recipe => {
         res.status(200).json(recipe);
@@ -18,20 +19,8 @@ module.exports = app => {
       });
   });
 
-  app.get("/api/recipe/:id", (req, res) => {
-    const id = req.params.id;
-    Recipe.findOne({ _id: id })
-      .then(recipe => {
-        res.status(200).json(recipe);
-      })
-      .catch(() => {
-        res
-          .status(500)
-          .json({ message: "The information could not be retrieved" });
-      });
-  });
-
   app.post("/api/addrecipe", function(req, res) {
+    console.log("req.body in addrecipes", req.body);
     const newRecipe = new Recipe(req.body);
     newRecipe.save(function(err, recipe) {
       if (err) {

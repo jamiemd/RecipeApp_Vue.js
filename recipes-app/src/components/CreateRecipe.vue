@@ -57,8 +57,7 @@ export default {
         this.$emit('create-recipe', {
           name,
           ingredients,
-          instructions,
-          done: false
+          instructions
         })
         this.name = ''
         this.ingredients = ''

@@ -10,9 +10,9 @@
 </template>
 
 <script>
-import sweetalert from 'sweetalert'
 import RecipeList from './components/RecipeList'
 import CreateRecipe from './components/CreateRecipe'
+import axios from 'axios'
 
 export default {
   name: 'app',
@@ -22,22 +22,43 @@ export default {
   },
   data () {
     return {
-      recipes: [{
-        name: 'Carbonara',
-        ingredients: 'cheese, bacon',
-        instructions: 'cook pasta'
-      },
-      { name: 'Salad',
-        ingredients: 'veggies',
-        instructions: 'toss the veggies'}
-      ]
+      // recipes: [{
+      //   name: 'Carbonara',
+      //   ingredients: 'cheese, bacon',
+      //   instructions: 'cook pasta'
+      // },
+      // { name: 'Salad',
+      //   ingredients: 'veggies',
+      //   instructions: 'toss the veggies'}
+      // ]
+      recipes: []
     }
+  },
+  mounted: () => {
+    console.log('data mounted')
+    axios.get('http://localhost:8000/api/recipes')
+      .then((response) => {
+        console.log('response.data[0]', response.data)
+        this.loading = false
+        this.recipes = response.data
+        console.log('this.recipes', this.recipes)
+      }, (error) => {
+        console.log('error', error.response)
+        this.loading = false
+      })
   },
   methods: {
     createRecipe (newRecipe) {
       this.recipes.push(newRecipe)
-      sweetalert('Success!', 'To-Do created!', 'success')
+      console.log('newRecipe', newRecipe)
+      axios.post('http://localhost:8000/api/addrecipe', newRecipe)
+        .then((response) => {
+          console.log('response: createRecipe', response)
+        }, (error) => {
+          console.log('error', error.response)
+        })
     }
   }
+
 }
 </script>
