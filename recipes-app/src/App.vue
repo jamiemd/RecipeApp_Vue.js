@@ -4,7 +4,7 @@
     <h1 class="ui dividing centered header">RecipeApp</h1>
     <div>
         <create-recipe v-on:create-recipe="createRecipe"></create-recipe>
-        <recipe-list v-on:click="showRecipe" v-bind:recipes="recipes"></recipe-list>
+        <recipe-list v-bind:recipes="recipes"></recipe-list>
     </div>
   </div>
 </template>
@@ -26,16 +26,17 @@ export default {
         name: 'Carbonara',
         ingredients: 'cheese, bacon',
         instructions: 'cook pasta'
-      }]
+      },
+      { name: 'Salad',
+        ingredients: 'veggies',
+        instructions: 'toss the veggies'}
+      ]
     }
   },
   methods: {
     createRecipe (newRecipe) {
       this.recipes.push(newRecipe)
       sweetalert('Success!', 'To-Do created!', 'success')
-    },
-    showRecipe () {
-
     }
   }
 }

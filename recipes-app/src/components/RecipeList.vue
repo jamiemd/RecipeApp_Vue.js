@@ -1,12 +1,43 @@
 
 <template>
-  <div>
-    <recipe v-on:delete-recipe="deleteRecipe" v-on:complete-recipe="completeRecipe" v-for="recipe in recipes" :key="recipe.id" :recipe.sync="recipe"></recipe>
+
+<div class='ui two column centered grid'>
+
+  <div class='two wide column'>
+    <recipe v-on:delete-recipe="deleteRecipe" v-on:show-form="showForm" v-bind:showForm="showForm" v-for="recipe in recipes" :key="recipe.id" :recipe.sync="recipe"></recipe>
   </div>
+
+  <div class='eight wide column' v-show="isEditing">
+    <div class='ui centered card'>
+      <div class="content">
+        <div class='ui form'>
+          <div class='field'>
+            <label>Recipe Name</label>
+              <input type='text' v-model="recipeInfo.name">
+          </div>
+          <div class='field'>
+            <label>Ingredients</label>
+              <textarea v-model="recipeInfo.ingredients"></textarea>
+          </div>
+          <div class='field'>
+            <label>Instructions</label>
+              <textarea v-model="recipeInfo.instructions"></textarea>
+          </div>
+          <div class='ui two button attached buttons'>
+            <button class='ui basic blue button' v-on:click="hideForm">
+              Close X
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
 </template>
 
 <script type = "text/javascript" >
-import sweetalert from 'sweetalert'
 import Recipe from './Recipe'
 
 export default {
@@ -14,22 +45,24 @@ export default {
   components: {
     Recipe
   },
+  data () {
+    return {
+      isEditing: false,
+      recipeInfo: ''
+    }
+  },
   methods: {
     deleteRecipe (recipe) {
-      sweetalert({
-        title: 'Are you sure?',
-        text: 'This To-Do will be permanently deleted!',
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#DD6B55',
-        confirmButtonText: 'Yes, delete it!',
-        closeOnConfirm: false
-      },
-      () => {
-        const recipeIndex = this.recipes.indexOf(recipe)
-        this.recipes.splice(recipeIndex, 1)
-        sweetalert('Deleted!', 'Your To-Do has been deleted.', 'success')
-      })
+      const recipeIndex = this.recipes.indexOf(recipe)
+      this.recipes.splice(recipeIndex, 1)
+    },
+    hideForm () {
+      this.isEditing = false
+    },
+    showForm (recipe) {
+      console.log('recipe', recipe)
+      this.isEditing = true
+      this.recipeInfo = recipe
     }
   }
 }

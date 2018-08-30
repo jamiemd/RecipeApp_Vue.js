@@ -31,13 +31,14 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
   data () {
     return {
       name: '',
       ingredients: '',
+      instructions: '',
       isCreating: false
     }
   },
@@ -63,15 +64,17 @@ export default {
         this.ingredients = ''
         this.instructions = ''
         this.isCreating = false
-        axios.post(`http://jsonplaceholder.typicode.com/posts`, {
-          body: this.postBody
-        })
-          .then(response => {})
-          .catch(e => {
-            console.log('e', e)
-          })
+      //   axios.post(`http://jsonplaceholder.typicode.com/posts`, {
+      //     body: this.postBody
+      //   })
+      //     .then(response => {})
+      //     .catch(e => {
+      //       console.log('e', e)
+      //     })
+      // }
       }
     }
   }
 }
+
 </script>
