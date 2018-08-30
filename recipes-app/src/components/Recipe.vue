@@ -39,7 +39,7 @@ export default {
     },
     created () {
       this.loading = true
-      axios.get('http://api/recipes')
+      axios.get('http://localhost:8000/api/recipes')
         .then((response) => {
           this.loading = false
           this.recipes = response.data.value

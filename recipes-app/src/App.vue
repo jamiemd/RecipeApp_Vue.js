@@ -30,7 +30,7 @@ export default {
     console.log('data mounted')
     axios.get('http://localhost:8000/api/recipes')
       .then((response) => {
-        console.log('response.data[0]', response.data)
+        console.log('response.data', response.data)
         this.loading = false
         this.recipes = response.data
         console.log('this.recipes', this.recipes)
@@ -51,12 +51,13 @@ export default {
     createRecipe (newRecipe) {
       this.recipes.push(newRecipe)
       console.log('newRecipe', newRecipe)
-      axios.post('http://localhost:8000/api/addrecipe', newRecipe)
+      axios.post('http://localhost:8000/api/add-recipe', newRecipe)
         .then((response) => {
           console.log('response: createRecipe', response)
         }, (error) => {
           console.log('error', error.response)
         })
+      this.isCreating = false
     }
   }
 

@@ -20,7 +20,7 @@
             <button class='ui basic blue button' v-on:click="sendCreateForm()">
               Create
             </button>
-            <button class='ui basic red button' v-on:click="hideCreateForm">
+            <button class='ui basic red button' v-on:click="cancelCreateForm">
               Cancel
             </button>
           </div>
@@ -44,10 +44,12 @@ export default {
   },
   methods: {
     showCreateForm () {
+      console.log('show create form clicked')
       this.isCreating = true
       this.$emit('show-create-form')
     },
-    hideCreateForm () {
+    cancelCreateForm () {
+      console.log('cancel create form clicked')
       this.isCreating = false
       this.$emit('hide-create-form')
     },
