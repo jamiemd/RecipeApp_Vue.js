@@ -39,17 +39,17 @@ export default {
     showEditForm (recipe) {
       this.$emit('show-edit-form', recipe)
     },
-    created () {
-      this.loading = true
-      axios.get('http://localhost:8000/api/recipes')
-        .then((response) => {
-          this.loading = false
-          this.recipes = response.data.value
-        }).catch((err) => {
-          console.log('err', err)
-          this.loading = false
-        })
-    }
+    // created () {
+    //   this.loading = true
+    //   axios.get('/api/recipes')
+    //     .then((response) => {
+    //       this.loading = false
+    //       this.recipes = response.data.value
+    //     }).catch((err) => {
+    //       console.log('err', err)
+    //       this.loading = false
+    //     })
+    // }
   }
 }
 </script>

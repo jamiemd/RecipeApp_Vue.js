@@ -59,7 +59,7 @@ export default {
       console.log('recipe in delete', recipe)
       const recipeIndex = this.recipes.indexOf(recipe)
       this.recipes.splice(recipeIndex, 1)
-      axios.delete('http://localhost:8000/api/delete-recipe', recipe)
+      axios.delete('/api/delete-recipe', recipe)
         .then((response) => {
           console.log('response in delete', response)
         }).catch((err) => {
@@ -69,7 +69,7 @@ export default {
     hideUpdateForm (recipe) {
       console.log('recipe in update', recipe)
       this.isEditing = false
-      axios.put('http://localhost:8000/api/update-recipe', recipe)
+      axios.put('/api/update-recipe', recipe)
         .then((response) => {
           console.log('response in update', response)
         }).catch((err) => {
