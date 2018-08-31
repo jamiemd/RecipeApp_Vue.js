@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 const Recipe = require("./routes");
 Recipe(app);
 
-app.use("/", serveStatic(path.join(__dirname, "/dist")));
+app.use("/", serveStatic(path.join(__dirname, "../recipes-app/dist")));
 
 mongoose.Promise = global.Promise;
 const connect = mongoose.connect(
