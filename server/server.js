@@ -24,7 +24,6 @@ const connect = mongoose.connect(
 
 connect.then(
   () => {
-    const port = 8000;
     app.listen(port);
     console.log(`Server Listening on ${port}`);
   },
