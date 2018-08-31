@@ -4,9 +4,12 @@ const cors = require("cors");
 const app = express();
 const mongoose = require("mongoose");
 const port = 8000;
+const serveStatic = require("serve-static");
 
 app.use(cors());
 app.use(bodyParser.json());
+
+app.use("/", serveStatic(path.join(__dirname, "/dist")));
 
 const Recipe = require("./routes");
 Recipe(app);
