@@ -15,9 +15,14 @@ app.use("/", serveStatic(path.join(__dirname, "/dist")));
 const Recipe = require("./routes");
 Recipe(app);
 
+console.log("process.env.NODE_ENV", process.env.NODE_ENV);
+const heroku =
+  "mongodb://heroku_z8qnwn5t:l3b75qqo029o1104skbp31t9cd@ds239682.mlab.com:39682/heroku_z8qnwn5t";
+const local = "mongodb://localhost/recipes";
+
 mongoose.Promise = global.Promise;
 const connect = mongoose.connect(
-  "mongodb://localhost/recipes",
+  heroku,
   { useNewUrlParser: true }
 );
 
