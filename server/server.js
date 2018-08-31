@@ -5,6 +5,7 @@ const app = express();
 const mongoose = require("mongoose");
 const port = 8000;
 const serveStatic = require("serve-static");
+const path = require("path");
 
 app.use(cors());
 app.use(bodyParser.json());
