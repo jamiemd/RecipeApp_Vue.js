@@ -23,7 +23,7 @@
 </template>
 
 <script type="text/javascript">
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
   props: ['recipe'],
@@ -38,7 +38,7 @@ export default {
     },
     showEditForm (recipe) {
       this.$emit('show-edit-form', recipe)
-    },
+    }
     // created () {
     //   this.loading = true
     //   axios.get('/api/recipes')
