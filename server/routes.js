@@ -56,7 +56,7 @@ module.exports = app => {
 
   app.delete("/api/delete-recipe", function(req, res) {
     console.log("req.body in delete", req.body);
-    Recipe.findOneAndRemove({ _id: req.body._id })
+    Recipe.findOneAndRemove(req.body._id)
       .then(result => {
         res.status(STATUS_OKAY).json({ message: "Recipe Deleted" });
       })

@@ -1,33 +1,43 @@
 <template>
-  <div class='ui basic content center aligned segment'>
+<div>
+  <div class='ui center aligned segment'>
     <button class='ui green button' v-on:click="showCreateForm" v-show="!isCreating">Create Recipe</button>
-    <div class='ui centered card' v-show="isCreating">
-      <div class='content'>
-        <div class='ui form'>
-          <div class='field'>
-            <label>Recipe Name</label>
-            <input v-model="name" type='text'>
-          </div>
-          <div class='field'>
-            <label>Ingredients</label>
-            <textarea v-model="ingredients"></textarea>
-          </div>
-           <div class='field'>
-            <label>Instructions</label>
-            <textarea v-model="instructions"></textarea>
-          </div>
-          <div class='ui two button attached buttons'>
-            <button class='ui basic blue button' v-on:click="sendCreateForm()">
-              Create
-            </button>
-            <button class='ui basic red button' v-on:click="cancelCreateForm">
-              Cancel
-            </button>
+  </div>
+
+    <div class='ui centered grid'>
+    <div class='eight wide column'>
+      <div class='ui segment' v-show="isCreating">
+        <div class='content'>
+          <div class='ui form'>
+            <div class='field'>
+              <label>Recipe Name</label>
+              <input v-model="name" type='text'>
+            </div>
+            <div class='field'>
+              <label>Ingredients</label>
+              <textarea v-model="ingredients"></textarea>
+            </div>
+            <div class='field'>
+              <label>Instructions</label>
+              <textarea v-model="instructions"></textarea>
+            </div>
+            <div class='ui two button attached buttons'>
+              <button class='ui basic blue button' v-on:click="sendCreateForm()">
+                Create
+              </button>
+              <button class='ui basic red button' v-on:click="cancelCreateForm">
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
       </div>
+      </div>
     </div>
   </div>
+
+</div>
+
 </template>
 
 <script>

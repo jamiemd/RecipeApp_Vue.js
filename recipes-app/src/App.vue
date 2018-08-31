@@ -1,7 +1,7 @@
 
 <template>
   <div id="app">
-    <h1 class="ui dividing centered header">RecipeApp</h1>
+    <h1 class="ui centered header">RecipeApp</h1>
     <div>
         <create-recipe v-on:create-recipe="createRecipe" v-on:show-create-form="showCreateForm" v-on:hide-create-form="hideCreateForm"></create-recipe>
         <recipe-list v-bind:recipes="recipes"  v-show="!isCreating"></recipe-list>

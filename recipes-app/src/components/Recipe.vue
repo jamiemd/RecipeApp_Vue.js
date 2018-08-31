@@ -1,18 +1,20 @@
 <template>
 
-<div>
-  <div class='ui centered card'>
-    <div class="content">
-      <div class='header'>
-          {{ recipe.name }}
-      </div>
-      <div class='extra content'>
-          <span class='right floated edit icon' v-on:click="showEditForm(recipe)">
-          <i class='edit icon'></i>
-        </span>
-        <span class='right floated trash icon' v-on:click="deleteRecipe(recipe)">
-          <i class='trash icon'></i>
-        </span>
+<div class='ui grid'>
+  <div class='column'>
+    <div class='ui centered card'>
+      <div class="content">
+        <div class='header'>
+            {{ recipe.name }}
+        </div>
+        <div class='extra content'>
+            <span class='right floated edit icon' v-on:click="showEditForm(recipe)">
+            <i class='edit icon'></i>
+          </span>
+          <span class='right floated trash icon' v-on:click="deleteRecipe(recipe)">
+            <i class='trash icon'></i>
+          </span>
+        </div>
       </div>
     </div>
   </div>
